@@ -1,2 +1,0 @@
-# QuanLyShopGiay
-update last

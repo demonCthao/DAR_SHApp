@@ -3,8 +3,8 @@ import { StyleSheet, Text, View,ScrollView, Image, TouchableOpacity } from 'reac
 function Home({navigation}){
 
     return(
-        <View style>
-            
+        <View >
+            <Text style={{ color: '#038C7F', fontSize: 20, fontWeight: 'bold', marginTop: 26 }}>Vượt Mọi Thử Thách</Text>
         </View>
     )
 }
