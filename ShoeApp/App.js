@@ -5,6 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import SplashScreen from './component/SplashScreen'
 import SplashScreen2 from './component/SplashScreen2';
+import Home from './component/Home'
+import TabNavi from './TabNavi';
+import ProductDetail from './component/ProductDetail';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -14,6 +17,9 @@ export default function App() {
       <Stack.Navigator initialRoutName={'SplashScreen'}>
           <Stack.Screen name='SplashScreen' component={SplashScreen} options={{headerShown:false}} />
           <Stack.Screen name='SplashScreen2' component={SplashScreen2} options={{headerShown:false}} />
+          <Stack.Screen name='TabNavi' component={TabNavi} options={{ headerShown: false, }} />
+          <Stack.Screen name='Home' component={Home} options={{title:'trang chu'}}/>
+          <Stack.Screen name='ProductDetail' component={ProductDetail} options={{ title: 'Chi Tiết Sản Phẩm' }} />
 
       </Stack.Navigator>
     </NavigationContainer>
