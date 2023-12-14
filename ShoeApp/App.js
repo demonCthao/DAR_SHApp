@@ -8,7 +8,8 @@ import SplashScreen2 from './component/SplashScreen2';
 import Home from './component/Home'
 import TabNavi from './TabNavi';
 import ProductDetail from './component/ProductDetail';
-
+import Login from './component/Login';
+import AllShoes from './component/AllShoes';
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,8 @@ export default function App() {
           <Stack.Screen name='TabNavi' component={TabNavi} options={{ headerShown: false, }} />
           <Stack.Screen name='Home' component={Home} options={{title:'trang chu'}}/>
           <Stack.Screen name='ProductDetail' component={ProductDetail} options={{ title: 'Chi Tiết Sản Phẩm' }} />
+          <Stack.Screen name='Login' component={Login} options={{ headerShown: false, }} />
+          <Stack.Screen name='AllShoes' component={AllShoes} options={{ title: 'Sản phẩm' }} />
 
       </Stack.Navigator>
     </NavigationContainer>
