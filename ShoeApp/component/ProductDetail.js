@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 import { getAuth } from "firebase/auth";
+import {getDatabase,set, ref, push, remove, onValue} from "firebase/database";
 import firebase from '../config/FirebaseConfig';
 
 function ProductDetail({ route, navigation }) {
@@ -8,7 +9,27 @@ function ProductDetail({ route, navigation }) {
     const [quantity, setQuantity] = useState(1);
 
     const addToCart = () => {
-        const auth = getAuth(firebase)
+        const auth = getAuth(firebase);
+        const userId = auth.currentUser ? auth.currentUser.uid :null;
+        if(userId){
+            const database =getDatabase(firebase);
+            const productWithQuantity = { ...product,quantity};
+            push(ref(database,`Cart/${userId}`),productWithQuantity)
+            .then((newRef)=>{
+                const cartItemId = newRef.key;
+                console.log('người dùng với id:',userId);
+                console.log('đã thêm sản phẩm vào giỏ hàng:',productWithQuantity);
+                console.log('Id của sản phẩm trong giỏ hàng:',cartItemId);
+                navigation.nagigate('Cart');
+            })
+            .catch((error)=>{
+                console.error('lỗi thêm sản phẩm vào giỏ hàng:',error);
+            });
+        } else{
+            console.log('người dùng chưa đăng nhập');
+            alert('chưa đăng nhập , vui lòng đăng nhập');
+            navigation.navigate('Login');
+        }
     }
     const increaseQuantity =()=>{
         setQuantity(quantity +1);
@@ -20,8 +41,30 @@ function ProductDetail({ route, navigation }) {
         }
     }
     const addtoFavo = () => {
+        const auth = getAuth(firebase);
+        const userId = auth.currentUser ? auth.currentUser.uid :null;
+        if(userId){
+            const database = getDatabase(firebase);
+            const productWithQuantity = {...product,quantity};
+            console.log(product);
+            push(ref(database,`Favourite/${userId}`),productWithQuantity)
+            .then((newRef)=>{
+                const cartItemId = newRef.key;
+                console.log('người dùng với id:',userId);
+                console.log('đã thêm sản phẩm vào yêu thích:',productWithQuantity);
+                console.log('ID của sản phẩm trong yêu thích:',cartItemId);
+            })
+            .catch((error)=>{
+                console.error('lỗi thêm sản phẩm vào yêu thích:',error);
+            })
+        }else{
+            console.log('người dùng chưa đăng nhập');
+            alert('chưa đăng nhập , vui lòng đăng nhập');
+            nagigation.navigate('Login');
+        }
 
-    }
+    };
+    
     const buyNow = ()=>{
         alert('chức năng đang phát triển')
     }

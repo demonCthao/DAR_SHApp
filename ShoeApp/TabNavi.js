@@ -21,7 +21,11 @@ const TabNavi = ({route})=>{
             }}
             >
             </Tab.Screen>
-           
+           {/* <Tab.Screen name={"tìm kiếm"} 
+            options={{
+                tabBarIcon:({color,size})=><Ionicons name='search' color={color} size={size}/>
+            }}
+           /> */}
             
         </Tab.Navigator>
     )
