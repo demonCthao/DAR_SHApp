@@ -10,6 +10,8 @@ import TabNavi from './TabNavi';
 import ProductDetail from './component/ProductDetail';
 import Login from './component/Login';
 import AllShoes from './component/AllShoes';
+import Register from "./component/Register";
+import Cart from "./component/Cart";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -23,6 +25,8 @@ export default function App() {
           <Stack.Screen name='ProductDetail' component={ProductDetail} options={{ title: 'Chi Tiết Sản Phẩm' }} />
           <Stack.Screen name='Login' component={Login} options={{ headerShown: false, }} />
           <Stack.Screen name='AllShoes' component={AllShoes} options={{ title: 'Sản phẩm' }} />
+          <Stack.Screen name='Register' component={Register} options={{ title: 'Đăng Ký' }} />
+          <Stack.Screen name='Cart' component={Cart} options={{ title: 'Giỏ hàng' }} />
 
       </Stack.Navigator>
     </NavigationContainer>
