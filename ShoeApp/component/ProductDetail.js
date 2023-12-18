@@ -20,7 +20,7 @@ function ProductDetail({ route, navigation }) {
                 console.log('người dùng với id:',userId);
                 console.log('đã thêm sản phẩm vào giỏ hàng:',productWithQuantity);
                 console.log('Id của sản phẩm trong giỏ hàng:',cartItemId);
-                navigation.nagigate('Cart');
+                navigation.navigate('Cart');
             })
             .catch((error)=>{
                 console.error('lỗi thêm sản phẩm vào giỏ hàng:',error);
@@ -60,7 +60,7 @@ function ProductDetail({ route, navigation }) {
         }else{
             console.log('người dùng chưa đăng nhập');
             alert('chưa đăng nhập , vui lòng đăng nhập');
-            nagigation.navigate('Login');
+            navigation.navigate('Login');
         }
 
     };
