@@ -6,6 +6,8 @@ import Cart from "./component/Cart";
 import NoCart from "./component/NoCart";
 import NoFavourite from "./component/NoFavourite";
 import Favourite from "./component/Favourite";
+import User from "./component/User"
+import NotLoginUser from "./component/NotLoginUser"
 const Tab = createBottomTabNavigator();
 const TabNavi = ({ route }) => {
     const { isAuthenticated } = route.params || { isAuthenticated: false }
@@ -34,22 +36,22 @@ const TabNavi = ({ route }) => {
             >
 
             </Tab.Screen>
-            {isAuthenticated ?(
-                <Tab.Screen 
+            {isAuthenticated ? (
+                <Tab.Screen
                     name="yêu thích"
                     component={Favourite}
                     options={{
                         tabBarIcon: ({ color, size }) => <Ionicons name='heart' color={color} size={size} />
                     }}
                 />
-            ) :(
+            ) : (
                 <Tab.Screen
-                name="yêu thích"
-                component={NoFavourite}
-                options={{
-                    tabBarLabel:"Favourite",
-                    tabBarIcon:({color,size}) =><Ionicons name="heart" color={color} size={size} />
-                }}
+                    name="yêu thích"
+                    component={NoFavourite}
+                    options={{
+                        tabBarLabel: "Favourite",
+                        tabBarIcon: ({ color, size }) => <Ionicons name="heart" color={color} size={size} />
+                    }}
                 />
             )
 
@@ -78,6 +80,32 @@ const TabNavi = ({ route }) => {
 
                 </Tab.Screen>
             )}
+
+            {isAuthenticated ? (
+                <Tab.Screen 
+                name="tài khoản"
+                component={User}
+                options={{
+                    tabBarLabel:'tài khoản',
+                    tabBarIcon:({color,size}) => <Ionicons name="person" color={color} size={size} /> 
+                }}
+                >
+                
+                </Tab.Screen>
+            ) : (
+                <Tab.Screen 
+                name="tài khoản"
+                component={NotLoginUser}
+                options={{
+                    tabBarLabel: 'Tài Khoản',
+                    tabBarIcon: ({ color, size }) => <Ionicons name='person' color={color} size={size} />
+                }}
+                >
+
+                </Tab.Screen>
+            )
+
+            }
 
         </Tab.Navigator>
     )
