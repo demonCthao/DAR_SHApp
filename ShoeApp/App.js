@@ -12,6 +12,12 @@ import Login from './component/Login';
 import AllShoes from './component/AllShoes';
 import Register from "./component/Register";
 import Cart from "./component/Cart";
+import Oder from './component/Oder';
+import ChatScreen from "./component/ChatScreen";
+import ChangePassword from "./component/ChangePassword";
+import EditProfile from "./component/EditProfile";
+import User from "./component/User";
+
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -27,6 +33,11 @@ export default function App() {
           <Stack.Screen name='AllShoes' component={AllShoes} options={{ title: 'Sản phẩm' }} />
           <Stack.Screen name='Register' component={Register} options={{ title: 'Đăng Ký' }} />
           <Stack.Screen name='Cart' component={Cart} options={{ title: 'Giỏ hàng' }} />
+          <Stack.Screen name='Oder' component={Oder} options={{ title: 'Đơn mua' }} />
+          <Stack.Screen name='ChatScreen' component={ChatScreen} options={{ title: 'Nhóm chat cộng đồng' }} />
+          <Stack.Screen name='ChangePassword' component={ChangePassword} options={{ title: 'Đổi Mật Khẩu' }} />
+          <Stack.Screen name='EditProfile' component={EditProfile} options={{ title: 'Chỉnh sửa hồ sơ' }} />
+          <Stack.Screen name='User' component={User} options={{ title: 'Thông tin người dùng' }} />
 
       </Stack.Navigator>
     </NavigationContainer>
