@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Danh sách sản phẩm</h2>
+        <div class="mb-3">
+            <form action="/search" method="GET" class="d-flex">
+                <input type="text" name="q" placeholder="Tìm kiếm sản phẩm..." class="form-control me-2" required>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Tìm kiếm</button>
+            </form>
+        </div>
+        <div class="mb-3">
+            <a href="/add" class="btn btn-primary"><i class="bi bi-plus"></i> Thêm sản phẩm mới</a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Loại sản phẩm</th>
+                    <th>Giá tiền</th>
+                    <th>Ảnh sản phẩm</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each arrProduct}}
+                <tr>
+                    <td>{{this.product_additional_info}}</td>
+                    <td>{{this.brands_filter_facet}}</td>
+                    <td>{{this.price}} VNĐ</td>
+                    <td><img src="{{this.search_image}}" style="height: 50px; width: 50px;" alt="Ảnh xe"></td>
+                    <td>
+
+                        <button class="btn btn-primary btn-action" data-bs-toggle="modal"
+                            data-bs-target="#SuaSP{{this.id}}"><i class="fas fa-edit"></i>Sửa</button>
+                        <button class="btn btn-danger btn-action" data-bs-toggle="modal"
+                            data-bs-target="#XoaSP{{this.id}}"><i class="fas fa-trash"></i>Xoá</button>
+
+                        <!-- Modal Xóa Sản phẩm-->
+                        <div class="modal fade" id="XoaSP{{this.id}}" tabindex="-1" aria-labelledby="XoaSPLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="XoaSPLabel">Xác nhận xóa</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Bạn có chắc chắn muốn xóa {{this.id}}?
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Hủy</button>
+                                        <form action="/delete/{{this.id}}" method="POST">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-danger">Xóa</button>
+                                        </form>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Sửa Sản phẩm-->
+                        <div class="modal fade" id="SuaSP{{this.id}}" tabindex="-1" aria-labelledby="SuaSPLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa sản phẩm</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+
+                                    <form action="/update/{{this.id}}" method="POST" id="SuaSP{{this.id}}">
+                                        <div class="modal-body">
+
+                                            <label for="search_image" class="form-label"> Ảnh sản phẩm:</label>
+                                            <img src="{{this.search_image}}" style="height: 50px; width: 50px;"
+                                                alt="Ảnh sản phẩm">
+                                            <input type="url" class="form-control" id="search_image " name="search_image"
+                                                style="margin-bottom: 7px" value="{{this.search_image}}" required>
+
+                                            <label for="product_additional_info" class="form-label"> Tên sản phẩm:</label>
+                                            <input class="form-control" type="text" placeholder="Tên sản phẩm"
+                                                id="product_additional_info" name="product_additional_info" value="{{this.product_additional_info}}" required>
+
+                                            <label for="brands_filter_facet" class="form-label"> Loại sản phẩm:</label>
+                                            <input class="form-control" type="text" placeholder="Loại sản phẩm"
+                                                id="brands_filter_facet" name="brands_filter_facet" value="{{this.brands_filter_facet}}" required>
+
+                                            <label for="price" class="form-label"> Giá tiền:</label>
+                                            <input id="price" class="form-control" type="number" placeholder="Giá tiền"
+                                                min="1" name="price" value="{{this.price}}" style="margin-bottom: 7px;"
+                                                required>
+
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Hủy</button>
+                                            <button type="submit" class="btn btn-primary">Lưu</button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

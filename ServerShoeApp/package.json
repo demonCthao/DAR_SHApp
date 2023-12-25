@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "@firebase/firestore": "^4.4.0",
+    "@firebase/util": "^1.9.3",
+    "@google-cloud/firestore": "^7.1.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "firebase": "^10.7.1",
+    "firebase-admin": "^12.0.0",
+    "nodemon": "^3.0.2"
+  },
+  "name": "servershoeapp",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
